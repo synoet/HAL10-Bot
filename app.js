@@ -14,7 +14,7 @@ for (const file of commandFiles){
 }
 bot.on("error", console.error);
 
-const prefix = '!hal';
+const prefix = '/hal';
 
 bot.on('ready', () => {
     console.log('I am ready');
@@ -36,6 +36,7 @@ bot.on("message", async message => {
         try {
             bot.commands.get(command).run(bot, message, args);
         } catch (error){
+            message.channel.send("Im sorry " + message.author.id + " i'm afraid I can't do that...");
             console.log(error);
         }
     }
