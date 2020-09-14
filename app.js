@@ -1,40 +1,42 @@
-const {Client, Collection} = require('discord.js');
-const bot = new Client();
-
+const Discord = require('discord.js');
+const bot = new Discord.Client();
+const {token} = require('./config.json');
 const {readdirSync} = require('fs');
 const {join} = require('path');
 
 bot.commands = new Discord.Collection();
 
-const commandFiles = readdirSync(join(__dirname, "commands")).filter(file => file.endsWith("js"));
+const commandFiles = readdirSync(join(__dirname, "commands")).filter(file => file.endsWith(".js"));
 
 for (const file of commandFiles){
-    const command = require(join(__dirname, "commands", `{file}`));
+    const command = require(join(__dirname, "commands", `${file}`));
     bot.commands.set(command.name, command);
 }
+bot.on("error", console.error);
 
-bot.on('error', console.error());
+const prefix = '!hal';
 
-const prefix = '/HAL'
 bot.on('ready', () => {
     console.log('I am ready');
 })
+
+
 
 bot.on("message", async message => {
     if(message.author.bot) return;
     if(message.channel.type === 'dm') return;
 
     if(message.content.startsWith(prefix)) {
-        const args = message.content.slice(prefix.length).trim().split(/ +/);
+        const args = message.content.slice(prefix.length + 1).trim().split(/ +/);
 
         const command = args.shift().toLowerCase();
 
-        if(!clientInformation.commands.has(command)) return;
+        if(!bot.commands.has(command)) return;
 
         try {
-            clientInformation.commands.get(command).run(client, message, args);
+            bot.commands.get(command).run(bot, message, args);
         } catch (error){
-            message.channel.send("Im sorry Dave I cannot do that.");
+            console.log(error);
         }
     }
 })
