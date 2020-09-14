@@ -1,0 +1,22 @@
+{
+  "name": "hal10-bot",
+  "version": "1.0.0",
+  "description": "An educational discord bot.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nysteo/HAL10-Bot.git"
+  },
+  "author": "Teo Nys",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nysteo/HAL10-Bot/issues"
+  },
+  "homepage": "https://github.com/nysteo/HAL10-Bot#readme",
+  "dependencies": {
+    "discord.js": "^12.3.1"
+  }
+}
