@@ -18,6 +18,7 @@
   "homepage": "https://github.com/nysteo/HAL10-Bot#readme",
   "dependencies": {
     "discord.js": "^12.3.1",
+    "node-html-to-image": "^3.0.1",
     "request-promise": "^4.2.6"
   }
 }
